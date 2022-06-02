@@ -8,6 +8,8 @@ class Todo extends Component
 {
     public $todos = [];
     public $newTodo = '';
+    public $total = 0;
+    public $completed = 0;
 
     public function render()
     {
@@ -22,15 +24,25 @@ class Todo extends Component
             'completed' => false,
         ];
         $this->newTodo = '';
+        $this->total += 1;
+        $this->count();
     }
 
     public function removeTodo($key)
     {
         unset($this->todos[$key]);
+        $this->total -= 1;
+        $this->count();
     }
 
     public function changeStatus($key)
     {
         $this->todos[$key]['completed'] = ! $this->todos[$key]['completed'];
+        $this->count();
+    }
+
+    public function count()
+    {
+        $this->completed = collect($this->todos)->where('completed', true)->count();
     }
 }

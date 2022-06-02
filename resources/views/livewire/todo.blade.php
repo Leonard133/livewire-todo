@@ -8,6 +8,7 @@
                     <button type="submit" class="flex-no-shrink p-2 border-2 rounded text-teal-500 border-teal-500 hover:text-white hover:bg-teal-500">Add</button>
                 </form>
             </div>
+            <p>{{ $completed }} / {{ $total }}</p>
             <div>
                 @foreach($todos as $key => $todo)
                 <div class="flex mb-4 items-center">
